@@ -1,5 +1,4 @@
-" Example Vim configuration.
-" Copy or symlink to ~/.vimrc or ~/_vimrc.
+" Sky Fernandez
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -8,8 +7,12 @@ let mapleader = ","
 imap <esc> <nop>
 inoremap jk <ESC> 
 
+set t_Co=256
+colorscheme molokai
+
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
+set fileformats+=dos              " Dont add a newline at the end of the file
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -24,11 +27,7 @@ set wildmode=list:longest         " Complete files like a shell.
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
 
-set number                        " Show line numbers.
 set ruler                         " Show cursor position.
-
-colorscheme molokai
-" set background=dark
 
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
@@ -44,18 +43,34 @@ set laststatus=2                  " Show the status line all the time
 set visualbell                    " No beeping.
 set guicursor+=a:blinkon0         " Disable cursor blinking
 
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+" Backup options (needs ~/.vim-bk setup beforehand)
+set backup 
+set backupdir=~/.vim-bk,~/.tmp,~/tmp,/var/tmp,/tmp 
+set backupskip=/tmp/*,/private/tmp/* 
+set directory=~/.vim-bk,~/.tmp,~/tmp,/var/tmp,/tmp 
+set writebackup
 
 set textwidth=79
+
+" Relative line numbers by default, C-n to toggle
+set relativenumber
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
 
 set fo=tcrqn             " See help (complex).
 set ai                   " Auto-indent.
 set cinkeys-=0#          " Prevent unindenting of '#'.
-set tabstop=8            " Tab spacing (settings below correspond to unify.
-set softtabstop=4        " Unify.
-set shiftwidth=4         " Indent/outdent by 4 columns.
+set tabstop=4            " Tab spacing (settings below correspond to unify.
+set softtabstop=2        " Unify.
+set shiftwidth=2         " Indent/outdent by 4 columns.
 set shiftround           " Always indent/outdent to the nearest tabstop.
 set expandtab            " Use spaces instead of tabs.
 set smarttab             " Use tabs at the start of a line, spaces elsewhere.
@@ -113,13 +128,6 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " match ErrorMsg '\%>79v.\+'
 set cc=80
 highlight ColorColumn ctermbg=235 guibg=#222222
-
-" Toggle rainbow parentheses
-nnoremap <leader>R :RainbowParenthesesToggle
-map <leader>rf :rubyf %<CR>
-vmap <leader>c <esc>:'<,'>:CoffeeCompile<CR>
-map <leader>c :CoffeeCompile<CR>
-
 
 " Enable pathogen plugin management
 call pathogen#infect()

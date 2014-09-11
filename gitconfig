@@ -1,0 +1,8 @@
+[user]
+	name = Sky Fernandez
+	email = sky.fernandez@nuix.com
+[rerere]
+	enabled = true
+[alias]
+	tidy = !git remote prune origin && git branch -r --merged master | grep -v 'master$' | grep -v feature | sed 's%origin/%%' | xargs -I% git push origin :% && git branch --merged master | grep -v 'master$' | grep -v feature | xargs git branch -d
+	tidy-dryrun = !git remote prune --dry-run origin && git branch -r --merged master | grep -v 'master$' | grep -v feature | sed 's%origin/%%' | xargs -I% echo [remote] % && git branch --merged master | grep -v 'master$' | grep -v feature | xargs -I% echo [local] %
