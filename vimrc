@@ -7,8 +7,9 @@ let mapleader = ","
 imap <esc> <nop>
 inoremap jk <ESC> 
 
-set t_Co=256
-colorscheme molokai
+" set t_Co=256
+set background=dark
+colorscheme solarized
 
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
@@ -76,28 +77,6 @@ set expandtab            " Use spaces instead of tabs.
 set smarttab             " Use tabs at the start of a line, spaces elsewhere.
 set nowrap      
 
-
-" HTML (tab width 2 chr, no wrapping)
-autocmd FileType html set sw=2
-autocmd FileType html set ts=2
-autocmd FileType html set sts=2
-autocmd FileType html set textwidth=0
-" Python (tab width 4 chr, wrap at 79th char)
-autocmd FileType python set sw=4
-autocmd FileType python set ts=4
-autocmd FileType python set sts=4
-autocmd FileType python set textwidth=79
-" CSS (tab width 2 chr, wrap at 79th char)
-autocmd FileType css set sw=2
-autocmd FileType css set ts=2
-autocmd FileType css set sts=2
-autocmd FileType css set textwidth=79
-" JavaScript (tab width 4 chr, wrap at 79th)
-autocmd FileType javascript set sw=4
-autocmd FileType javascript set ts=4
-autocmd FileType javascript set sts=4
-autocmd FileType javascript set textwidth=79
-
 " Disable Arrow Keys
 map <up> <nop>
 map <down> <nop>
@@ -114,14 +93,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" CoffeeScript defaults
-au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable " folding (hit zi)
-au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab " two-space indentation 
-au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable " zi folding
-
-" Ruby defaults
-au BufNewFile,BufReadPost *.rb setl shiftwidth=2 expandtab
-
 " Edit .vimrc on the fly
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
@@ -129,5 +100,22 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 set cc=80
 highlight ColorColumn ctermbg=235 guibg=#222222
 
-" Enable pathogen plugin management
-call pathogen#infect()
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" imap <C-o> <CR><esc>o
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'wincent/command-t'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'Raimondi/delimitMate'
+
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mxw/vim-jsx'
+
+call plug#end()
