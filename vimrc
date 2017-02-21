@@ -33,6 +33,7 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 nnoremap <leader><space> :noh<cr>
+set wildignore+=node_modules/
 
 set wrap                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
@@ -102,12 +103,21 @@ highlight ColorColumn ctermbg=235 guibg=#222222
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
+" CtrlP Configuration
+set wildignore+=*/node_modules/*,*/dist/*
+nnoremap <leader>t :CtrlP<CR>
+
+" let g:ctrlp_map = '<,-t>'
 " imap <C-o> <CR><esc>o
+"
+
+" replace selected with <c-r>
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'wincent/command-t'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'tpope/vim-fugitive'
 
@@ -117,5 +127,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mxw/vim-jsx'
+
+Plug 'elixir-lang/vim-elixir'
 
 call plug#end()

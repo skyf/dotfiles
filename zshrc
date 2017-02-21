@@ -1,12 +1,12 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/fernask/.oh-my-zsh
+export ZSH=/Users/sky/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
-DEFAULT_USER="fernask"
+DEFAULT_USER="sky"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,8 +85,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+export AZURE_STORAGE_ACCOUNT=crsdata01
+export AZURE_STORAGE_ACCESS_KEY=73hWuU+D4QnbXkIztXZaiub6KxtTgkByb9qmT6ojXQMBo2jzHwVF2V+dgcyZHtgr4zvAHHW8wR7bTK0rC4Zwnw==
 
-alias serve="python -m SimpleHTTPServer 8000"
+alias serve="python -m SimpleHTTPServer 3000"
 alias scala-serve="sbt \"project http\" \"run\""
 
 alias pp='python -mjson.tool'
@@ -94,3 +97,6 @@ alias pp='python -mjson.tool'
 alias gst="git status"
 alias wip="git commit -am 'wip'"
 alias git-clean="git branch --merged master | grep -v 'master$' | xargs git branch -d"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
